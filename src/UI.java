@@ -1,8 +1,16 @@
 import java.awt.Dimension;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -127,7 +135,8 @@ public class UI extends javax.swing.JFrame {
         mysqlURLField = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         mysqlPortField = new javax.swing.JTextField();
-        mysqlPasswordField = new javax.swing.JTextField();
+        mysqlPasswordField = new javax.swing.JPasswordField();
+        mysqlRememberCheckbox = new javax.swing.JCheckBox();
         jTabbedPane = new javax.swing.JTabbedPane();
         games = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -930,6 +939,9 @@ public class UI extends javax.swing.JFrame {
 
         mysqlPortField.setText("3306");
 
+        mysqlRememberCheckbox.setSelected(true);
+        mysqlRememberCheckbox.setText("Remember?");
+
         javax.swing.GroupLayout mysqlLoginLayout = new javax.swing.GroupLayout(mysqlLogin.getContentPane());
         mysqlLogin.getContentPane().setLayout(mysqlLoginLayout);
         mysqlLoginLayout.setHorizontalGroup(
@@ -941,7 +953,7 @@ public class UI extends javax.swing.JFrame {
                         .addGroup(mysqlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
                             .addComponent(jLabel22))
-                        .addGap(0, 3, Short.MAX_VALUE))
+                        .addGap(0, 5, Short.MAX_VALUE))
                     .addGroup(mysqlLoginLayout.createSequentialGroup()
                         .addGroup(mysqlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel26)
@@ -951,14 +963,17 @@ public class UI extends javax.swing.JFrame {
                             .addComponent(jLabel27))
                         .addGap(18, 18, 18)
                         .addGroup(mysqlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(mysqlLoginLayout.createSequentialGroup()
-                                .addComponent(mysqlPortField)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(mysqlConnectButton))
                             .addComponent(mysqlUsernameField)
                             .addComponent(mysqlDatabaseNameField)
                             .addComponent(mysqlURLField)
-                            .addComponent(mysqlPasswordField))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mysqlLoginLayout.createSequentialGroup()
+                                .addGroup(mysqlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(mysqlPasswordField, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(mysqlPortField))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(mysqlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(mysqlConnectButton)
+                                    .addComponent(mysqlRememberCheckbox))))))
                 .addContainerGap())
         );
         mysqlLoginLayout.setVerticalGroup(
@@ -983,13 +998,14 @@ public class UI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mysqlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
-                    .addComponent(mysqlPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mysqlPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mysqlRememberCheckbox))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mysqlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
                     .addComponent(mysqlPortField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mysqlConnectButton))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1374,7 +1390,7 @@ public class UI extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Want to Beat");
+        jLabel8.setText("Want to Read");
 
         jLabel9.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1646,7 +1662,7 @@ public class UI extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Want to Beat");
+        jLabel12.setText("Want to Watch");
 
         jLabel13.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -2870,13 +2886,32 @@ public class UI extends javax.swing.JFrame {
     }//GEN-LAST:event_mysqlUsernameFieldActionPerformed
 
     private void mysqlConnectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mysqlConnectButtonActionPerformed
+        String mysqlPass = new String(mysqlPasswordField.getPassword());
         try {
             connection = new mysqlConnection().connection(mysqlURLField.getText(), mysqlDatabaseNameField.getText(), mysqlUsernameField.getText(), 
-                                                            mysqlPasswordField.getText(), mysqlPortField.getText());
+                                                            mysqlPass, mysqlPortField.getText());
         } catch (SQLException ex) {
             Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        if (mysqlRememberCheckbox.isSelected()){
+            mysqlInfo = new File("mysqlLoginInfo.txt");
+            try {
+                PrintWriter writer = new PrintWriter (mysqlInfo);
+                writer.println(mysqlURLField.getText());
+                writer.println(mysqlDatabaseNameField.getText());
+                writer.println(mysqlUsernameField.getText());
+                writer.println(mysqlPass);
+                writer.println(mysqlPortField.getText());
+                writer.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+            if (mysqlInfo.exists()){
+                mysqlInfo.delete();
+            }
+        }
         mysqlLogin.setVisible(false);
         
         refreshLists(jLists, connection, order);
@@ -2922,8 +2957,20 @@ public class UI extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new UI().setVisible(true);
+                if (mysqlInfo.exists()){
+                    try {
+                        Scanner sc = new Scanner (mysqlInfo);
+                        mysqlURLField.setText(sc.nextLine());
+                        mysqlDatabaseNameField.setText(sc.nextLine());
+                        mysqlUsernameField.setText(sc.nextLine());
+                        mysqlPasswordField.setText(sc.nextLine());
+                        mysqlPortField.setText(sc.nextLine());
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
                 mysqlLogin.setVisible(true);
-
+                
                 //initialize jLists array
                 jLists[0] = toDoGames;
                 jLists[1] = currentGames;
@@ -3121,12 +3168,13 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JPanel movies;
     private javax.swing.ButtonGroup moviesSort;
     private javax.swing.JButton mysqlConnectButton;
-    private javax.swing.JTextField mysqlDatabaseNameField;
+    private static javax.swing.JTextField mysqlDatabaseNameField;
     public static javax.swing.JDialog mysqlLogin;
-    private javax.swing.JTextField mysqlPasswordField;
-    private javax.swing.JTextField mysqlPortField;
-    private javax.swing.JTextField mysqlURLField;
-    private javax.swing.JTextField mysqlUsernameField;
+    private static javax.swing.JPasswordField mysqlPasswordField;
+    private static javax.swing.JTextField mysqlPortField;
+    private javax.swing.JCheckBox mysqlRememberCheckbox;
+    private static javax.swing.JTextField mysqlURLField;
+    private static javax.swing.JTextField mysqlUsernameField;
     public javax.swing.JTextField nameFieldBooks;
     public javax.swing.JTextField nameFieldGames;
     public javax.swing.JTextField nameFieldMovies;
@@ -3174,4 +3222,5 @@ public class UI extends javax.swing.JFrame {
     public static Connection connection;
     public static JList[] jLists = new JList[12];
     public static String order = "name";
-}
+    public static File mysqlInfo = new File("mysqlLoginInfo.txt");
+    }

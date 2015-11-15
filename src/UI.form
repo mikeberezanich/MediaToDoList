@@ -1117,7 +1117,7 @@
                               <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel22" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="5" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1129,15 +1129,20 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="mysqlPortField" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="mysqlConnectButton" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Component id="mysqlUsernameField" max="32767" attributes="0"/>
                               <Component id="mysqlDatabaseNameField" max="32767" attributes="0"/>
                               <Component id="mysqlURLField" max="32767" attributes="0"/>
-                              <Component id="mysqlPasswordField" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="mysqlPasswordField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="mysqlPortField" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="mysqlConnectButton" min="-2" max="-2" attributes="0"/>
+                                      <Component id="mysqlRememberCheckbox" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -1171,6 +1176,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel25" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="mysqlPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="mysqlRememberCheckbox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -1178,7 +1184,7 @@
                       <Component id="mysqlPortField" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="mysqlConnectButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="43" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -1213,11 +1219,17 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mysqlDatabaseNameFieldActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="mysqlUsernameField">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mysqlUsernameFieldActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="mysqlConnectButton">
           <Properties>
@@ -1236,6 +1248,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mysqlURLFieldActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel27">
           <Properties>
@@ -1246,8 +1261,20 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="3306"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="mysqlPasswordField">
+        <Component class="javax.swing.JPasswordField" name="mysqlPasswordField">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="mysqlRememberCheckbox">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Remember?"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -2057,7 +2084,7 @@
                   <Font name="Noto Sans" size="18" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Want to Beat"/>
+                <Property name="text" type="java.lang.String" value="Want to Read"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
@@ -2485,7 +2512,7 @@
                   <Font name="Noto Sans" size="18" style="0"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Want to Beat"/>
+                <Property name="text" type="java.lang.String" value="Want to Watch"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
