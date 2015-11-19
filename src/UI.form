@@ -188,15 +188,20 @@
           <Properties>
             <Property name="editable" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="8">
+              <StringArray count="13">
                 <StringItem index="0" value="Action"/>
                 <StringItem index="1" value="Action-Adventure"/>
-                <StringItem index="2" value="Horror"/>
-                <StringItem index="3" value="Platformer"/>
-                <StringItem index="4" value="RPG"/>
-                <StringItem index="5" value="Shooter"/>
-                <StringItem index="6" value="Simulation"/>
-                <StringItem index="7" value="Strategy"/>
+                <StringItem index="2" value="Hack and Slash"/>
+                <StringItem index="3" value="Horror"/>
+                <StringItem index="4" value="Fighter"/>
+                <StringItem index="5" value="Platformer"/>
+                <StringItem index="6" value="Puzzle"/>
+                <StringItem index="7" value="Racing"/>
+                <StringItem index="8" value="RPG"/>
+                <StringItem index="9" value="Roguelike"/>
+                <StringItem index="10" value="Shooter"/>
+                <StringItem index="11" value="Simulation"/>
+                <StringItem index="12" value="Strategy"/>
               </StringArray>
             </Property>
           </Properties>
@@ -770,6 +775,7 @@
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="ownedRadioButtons"/>
             </Property>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Yes"/>
           </Properties>
           <Events>
@@ -886,19 +892,12 @@
                                           <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="notOwnedRadioTv" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           <Component id="confirmButtonTv" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="ownedLabel3" min="-2" pref="100" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="ownedRadioTv" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -931,12 +930,7 @@
                       <Component id="finishedRadioTv" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ownedLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ownedRadioTv" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="notOwnedRadioTv" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="confirmButtonTv" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="confirmButtonTv" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -958,11 +952,6 @@
             <Property name="text" type="java.lang.String" value="Date:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="ownedLabel3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Owned:"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="nameFieldTv">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameFieldTvActionPerformed"/>
@@ -975,30 +964,34 @@
           <Properties>
             <Property name="editable" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="20">
+              <StringArray count="21">
                 <StringItem index="0" value="Action"/>
                 <StringItem index="1" value="Adventure"/>
                 <StringItem index="2" value="Animation"/>
-                <StringItem index="3" value="Biography"/>
-                <StringItem index="4" value="Comedy"/>
-                <StringItem index="5" value="Crime"/>
-                <StringItem index="6" value="Documentary"/>
-                <StringItem index="7" value="Drama"/>
-                <StringItem index="8" value="Fantasy"/>
-                <StringItem index="9" value="History"/>
-                <StringItem index="10" value="Horror"/>
-                <StringItem index="11" value="Mystery"/>
-                <StringItem index="12" value="Reality TV"/>
-                <StringItem index="13" value="Romance"/>
-                <StringItem index="14" value="Sci-Fi"/>
-                <StringItem index="15" value="Sitcom"/>
-                <StringItem index="16" value="Sport"/>
-                <StringItem index="17" value="Thriller"/>
-                <StringItem index="18" value="War"/>
-                <StringItem index="19" value="Western"/>
+                <StringItem index="3" value="Anime"/>
+                <StringItem index="4" value="Biography"/>
+                <StringItem index="5" value="Comedy"/>
+                <StringItem index="6" value="Crime"/>
+                <StringItem index="7" value="Documentary"/>
+                <StringItem index="8" value="Drama"/>
+                <StringItem index="9" value="Fantasy"/>
+                <StringItem index="10" value="History"/>
+                <StringItem index="11" value="Horror"/>
+                <StringItem index="12" value="Mystery"/>
+                <StringItem index="13" value="Reality TV"/>
+                <StringItem index="14" value="Romance"/>
+                <StringItem index="15" value="Sci-Fi"/>
+                <StringItem index="16" value="Sitcom"/>
+                <StringItem index="17" value="Sport"/>
+                <StringItem index="18" value="Thriller"/>
+                <StringItem index="19" value="War"/>
+                <StringItem index="20" value="Western"/>
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="genreBoxTvActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
           </AuxValues>
@@ -1012,34 +1005,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dateFieldTvActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="notOwnedRadioTv">
-          <Properties>
-            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="ownedRadioButtons"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="No"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="notOwnedRadioTvActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-          </AuxValues>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="ownedRadioTv">
-          <Properties>
-            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
-              <ComponentRef name="ownedRadioButtons"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Yes"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ownedRadioTvActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -1096,9 +1061,6 @@
     <Container class="javax.swing.JDialog" name="mysqlLogin">
       <Properties>
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[415, 280]"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[415, 280]"/>
         </Property>
       </Properties>

@@ -111,12 +111,9 @@ public class UI extends javax.swing.JFrame {
         nameLabel3 = new javax.swing.JLabel();
         genreLabel3 = new javax.swing.JLabel();
         dateLabel3 = new javax.swing.JLabel();
-        ownedLabel3 = new javax.swing.JLabel();
         nameFieldTv = new javax.swing.JTextField();
         genreBoxTv = new javax.swing.JComboBox();
         dateFieldTv = new javax.swing.JFormattedTextField();
-        notOwnedRadioTv = new javax.swing.JRadioButton();
-        ownedRadioTv = new javax.swing.JRadioButton();
         confirmButtonTv = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
         toDoRadioTv = new javax.swing.JRadioButton();
@@ -271,7 +268,7 @@ public class UI extends javax.swing.JFrame {
         });
 
         genreBoxGames.setEditable(true);
-        genreBoxGames.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Action-Adventure", "Horror", "Platformer", "RPG", "Shooter", "Simulation", "Strategy" }));
+        genreBoxGames.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Action-Adventure", "Hack and Slash", "Horror", "Fighter", "Platformer", "Puzzle", "Racing", "RPG", "Roguelike", "Shooter", "Simulation", "Strategy" }));
 
         dateFieldGames.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####"))));
         dateFieldGames.setToolTipText("");
@@ -624,6 +621,7 @@ public class UI extends javax.swing.JFrame {
         });
 
         ownedRadioButtons.add(ownedRadioMovies);
+        ownedRadioMovies.setSelected(true);
         ownedRadioMovies.setText("Yes");
         ownedRadioMovies.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -755,8 +753,6 @@ public class UI extends javax.swing.JFrame {
 
         dateLabel3.setText("Date:");
 
-        ownedLabel3.setText("Owned:");
-
         nameFieldTv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameFieldTvActionPerformed(evt);
@@ -764,29 +760,18 @@ public class UI extends javax.swing.JFrame {
         });
 
         genreBoxTv.setEditable(true);
-        genreBoxTv.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Fantasy", "History", "Horror", "Mystery", "Reality TV", "Romance", "Sci-Fi", "Sitcom", "Sport", "Thriller", "War", "Western" }));
+        genreBoxTv.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Animation", "Anime", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Fantasy", "History", "Horror", "Mystery", "Reality TV", "Romance", "Sci-Fi", "Sitcom", "Sport", "Thriller", "War", "Western" }));
+        genreBoxTv.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genreBoxTvActionPerformed(evt);
+            }
+        });
 
         dateFieldTv.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("####"))));
         dateFieldTv.setToolTipText("");
         dateFieldTv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dateFieldTvActionPerformed(evt);
-            }
-        });
-
-        ownedRadioButtons.add(notOwnedRadioTv);
-        notOwnedRadioTv.setText("No");
-        notOwnedRadioTv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notOwnedRadioTvActionPerformed(evt);
-            }
-        });
-
-        ownedRadioButtons.add(ownedRadioTv);
-        ownedRadioTv.setText("Yes");
-        ownedRadioTv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ownedRadioTvActionPerformed(evt);
             }
         });
 
@@ -855,14 +840,8 @@ public class UI extends javax.swing.JFrame {
                                         .addComponent(finishedRadioTv)
                                         .addGap(0, 25, Short.MAX_VALUE))
                                     .addGroup(addTvLayout.createSequentialGroup()
-                                        .addComponent(notOwnedRadioTv)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(confirmButtonTv))))))
-                    .addGroup(addTvLayout.createSequentialGroup()
-                        .addComponent(ownedLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ownedRadioTv)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(confirmButtonTv)))))))
                 .addContainerGap())
         );
         addTvLayout.setVerticalGroup(
@@ -887,16 +866,11 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(currentRadioTv)
                     .addComponent(finishedRadioTv))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(addTvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ownedLabel3)
-                    .addComponent(ownedRadioTv)
-                    .addComponent(notOwnedRadioTv)
-                    .addComponent(confirmButtonTv))
+                .addComponent(confirmButtonTv)
                 .addContainerGap())
         );
 
         mysqlLogin.setMinimumSize(new java.awt.Dimension(415, 280));
-        mysqlLogin.setPreferredSize(new java.awt.Dimension(415, 280));
 
         jLabel21.setText("Please enter your URL/IP Address, mysql database name, a ");
 
@@ -2824,22 +2798,8 @@ public class UI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dateFieldTvActionPerformed
 
-    private void ownedRadioTvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownedRadioTvActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ownedRadioTvActionPerformed
-
-    private void notOwnedRadioTvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notOwnedRadioTvActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_notOwnedRadioTvActionPerformed
-
     private void confirmButtonTvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonTvActionPerformed
-        String ownership;
         String status;
-        
-        if (ownedRadioTv.isSelected())
-            ownership = "1";
-        else 
-            ownership = "0";
         
         if (toDoRadioTv.isSelected())
             status = "1";
@@ -2850,9 +2810,9 @@ public class UI extends javax.swing.JFrame {
         
         try {
             Statement statement = connection.createStatement();
-            statement.executeUpdate("INSERT INTO movies VALUES (" + "'" + nameFieldTv.getText() + "'" + "," + "'" 
+            statement.executeUpdate("INSERT INTO tv VALUES (" + "'" + nameFieldTv.getText() + "'" + "," + "'" 
                     + genreBoxTv.getSelectedItem().toString() + "'" + "," + "'" + dateFieldTv.getText() + "'" 
-                    + "," + ownership + "," + status + ")");
+                    + "," + status + ")");
         } catch (SQLException ex) {
             Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2925,6 +2885,10 @@ public class UI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_mysqlDatabaseNameFieldActionPerformed
 
+    private void genreBoxTvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genreBoxTvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genreBoxTvActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2991,21 +2955,43 @@ public class UI extends javax.swing.JFrame {
     }
     
     public static void refreshLists(JList[] list, Connection connection, String order){
-        try {
-            populateJList(list[0], "SELECT * FROM games WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
-            populateJList(list[1], "SELECT * FROM games WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
-            populateJList(list[2], "SELECT * FROM games WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
-            populateJList(list[3], "SELECT * FROM books WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
-            populateJList(list[4], "SELECT * FROM books WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
-            populateJList(list[5], "SELECT * FROM books WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
-            populateJList(list[6], "SELECT * FROM movies WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
-            populateJList(list[7], "SELECT * FROM movies WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
-            populateJList(list[8], "SELECT * FROM movies WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
-            populateJList(list[9], "SELECT * FROM tv WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
-            populateJList(list[10], "SELECT * FROM tv WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
-            populateJList(list[11], "SELECT * FROM tv WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
-        } catch (SQLException ex) {
-            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        if (order == "author"){
+            try{
+                populateJList(list[3], "SELECT * FROM books WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[4], "SELECT * FROM books WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[5], "SELECT * FROM books WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
+            }
+            catch (SQLException ex) {
+                Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if (order == "console"){
+            try{
+                populateJList(list[0], "SELECT * FROM games WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[1], "SELECT * FROM games WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[2], "SELECT * FROM games WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
+            }
+            catch (SQLException ex) {
+                Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+            try {
+                populateJList(list[0], "SELECT * FROM games WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[1], "SELECT * FROM games WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[2], "SELECT * FROM games WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[3], "SELECT * FROM books WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[4], "SELECT * FROM books WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[5], "SELECT * FROM books WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[6], "SELECT * FROM movies WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[7], "SELECT * FROM movies WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[8], "SELECT * FROM movies WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[9], "SELECT * FROM tv WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[10], "SELECT * FROM tv WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[11], "SELECT * FROM tv WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
+            } catch (SQLException ex) {
+                Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
    
@@ -3186,16 +3172,13 @@ public class UI extends javax.swing.JFrame {
     public javax.swing.JRadioButton notOwnedRadio;
     public javax.swing.JRadioButton notOwnedRadioBooks;
     public javax.swing.JRadioButton notOwnedRadioMovies;
-    public javax.swing.JRadioButton notOwnedRadioTv;
     private javax.swing.JLabel ownedLabel;
     private javax.swing.JLabel ownedLabel1;
     private javax.swing.JLabel ownedLabel2;
-    private javax.swing.JLabel ownedLabel3;
     public javax.swing.JRadioButton ownedRadioBooks;
     private javax.swing.ButtonGroup ownedRadioButtons;
     public javax.swing.JRadioButton ownedRadioGames;
     public javax.swing.JRadioButton ownedRadioMovies;
-    public javax.swing.JRadioButton ownedRadioTv;
     private javax.swing.JButton removeCurrentBooks;
     private javax.swing.JButton removeCurrentGames;
     private javax.swing.JButton removeCurrentMovies;
