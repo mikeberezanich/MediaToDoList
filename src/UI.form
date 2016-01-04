@@ -473,7 +473,7 @@
           <Properties>
             <Property name="editable" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="16">
+              <StringArray count="18">
                 <StringItem index="0" value="Action"/>
                 <StringItem index="1" value="Adventure"/>
                 <StringItem index="2" value="Biography"/>
@@ -483,13 +483,15 @@
                 <StringItem index="6" value="Historical"/>
                 <StringItem index="7" value="Horror"/>
                 <StringItem index="8" value="Humor/Satirical"/>
-                <StringItem index="9" value="Mystery"/>
-                <StringItem index="10" value="Psychology/Self-Help"/>
-                <StringItem index="11" value="Realistic"/>
-                <StringItem index="12" value="Romance"/>
-                <StringItem index="13" value="Science Fiction"/>
-                <StringItem index="14" value="Tragedy"/>
-                <StringItem index="15" value="Western"/>
+                <StringItem index="9" value="Memoir"/>
+                <StringItem index="10" value="Mystery"/>
+                <StringItem index="11" value="Psychology/Self-Help"/>
+                <StringItem index="12" value="Realistic"/>
+                <StringItem index="13" value="Romance"/>
+                <StringItem index="14" value="Science Fiction"/>
+                <StringItem index="15" value="Technology"/>
+                <StringItem index="16" value="Tragedy"/>
+                <StringItem index="17" value="Western"/>
               </StringArray>
             </Property>
           </Properties>

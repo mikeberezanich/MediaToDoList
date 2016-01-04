@@ -440,7 +440,7 @@ public class UI extends javax.swing.JFrame {
         });
 
         genreBoxBooks.setEditable(true);
-        genreBoxBooks.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Biography", "Crime", "Drama", "Fantasy", "Historical", "Horror", "Humor/Satirical", "Mystery", "Psychology/Self-Help", "Realistic", "Romance", "Science Fiction", "Tragedy", "Western" }));
+        genreBoxBooks.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Action", "Adventure", "Biography", "Crime", "Drama", "Fantasy", "Historical", "Horror", "Humor/Satirical", "Memoir", "Mystery", "Psychology/Self-Help", "Realistic", "Romance", "Science Fiction", "Technology", "Tragedy", "Western" }));
         genreBoxBooks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 genreBoxBooksActionPerformed(evt);
