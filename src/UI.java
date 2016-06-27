@@ -217,7 +217,6 @@ public class UI extends javax.swing.JFrame {
         byNameTv = new javax.swing.JToggleButton();
         byGenreTv = new javax.swing.JToggleButton();
         byDateTv = new javax.swing.JToggleButton();
-        byOwnershipTv = new javax.swing.JToggleButton();
         jLabel15 = new javax.swing.JLabel();
         jScrollPane10 = new javax.swing.JScrollPane();
         toDoTv = new javax.swing.JList();
@@ -1863,16 +1862,6 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
-        tvSort.add(byOwnershipTv);
-        byOwnershipTv.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
-        byOwnershipTv.setText("By Ownership");
-        byOwnershipTv.setToolTipText("");
-        byOwnershipTv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                byOwnershipTvActionPerformed(evt);
-            }
-        });
-
         jLabel15.setFont(new java.awt.Font("Noto Sans", 0, 18)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Finished");
@@ -2046,10 +2035,8 @@ public class UI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(byGenreTv)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(byDateTv)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(byOwnershipTv)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addComponent(byDateTv)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         tvLayout.setVerticalGroup(
             tvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2059,8 +2046,7 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jLabel14)
                     .addComponent(byNameTv)
                     .addComponent(byGenreTv)
-                    .addComponent(byDateTv)
-                    .addComponent(byOwnershipTv))
+                    .addComponent(byDateTv))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(tvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(tvLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2094,7 +2080,7 @@ public class UI extends javax.swing.JFrame {
                         .addComponent(addCurrentTv)
                         .addComponent(addFinishedTv))
                     .addComponent(removeCurrentTv))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jTabbedPane.addTab("TV", tv);
@@ -2565,11 +2551,6 @@ public class UI extends javax.swing.JFrame {
         refreshLists(jLists, connection, order);
     }//GEN-LAST:event_byDateTvActionPerformed
 
-    private void byOwnershipTvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_byOwnershipTvActionPerformed
-        order = "ownership";
-        refreshLists(jLists, connection, order);
-    }//GEN-LAST:event_byOwnershipTvActionPerformed
-
     private void toDoTvPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_toDoTvPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_toDoTvPropertyChange
@@ -2957,9 +2938,9 @@ public class UI extends javax.swing.JFrame {
     public static void refreshLists(JList[] list, Connection connection, String order){
         if (order == "author"){
             try{
-                populateJList(list[3], "SELECT * FROM books WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[4], "SELECT * FROM books WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[5], "SELECT * FROM books WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[3], order, "SELECT * FROM books WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[4], order, "SELECT * FROM books WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[5], order, "SELECT * FROM books WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
             }
             catch (SQLException ex) {
                 Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
@@ -2967,9 +2948,9 @@ public class UI extends javax.swing.JFrame {
         }
         else if (order == "console"){
             try{
-                populateJList(list[0], "SELECT * FROM games WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[1], "SELECT * FROM games WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[2], "SELECT * FROM games WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[0], order, "SELECT * FROM games WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[1], order, "SELECT * FROM games WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[2], order, "SELECT * FROM games WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
             }
             catch (SQLException ex) {
                 Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
@@ -2977,34 +2958,70 @@ public class UI extends javax.swing.JFrame {
         }
         else{
             try {
-                populateJList(list[0], "SELECT * FROM games WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[1], "SELECT * FROM games WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[2], "SELECT * FROM games WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[3], "SELECT * FROM books WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[4], "SELECT * FROM books WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[5], "SELECT * FROM books WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[6], "SELECT * FROM movies WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[7], "SELECT * FROM movies WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[8], "SELECT * FROM movies WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[9], "SELECT * FROM tv WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[10], "SELECT * FROM tv WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
-                populateJList(list[11], "SELECT * FROM tv WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[0], order, "SELECT * FROM games WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[1], order, "SELECT * FROM games WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[2], order, "SELECT * FROM games WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[3], order, "SELECT * FROM books WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[4], order, "SELECT * FROM books WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[5], order, "SELECT * FROM books WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[6], order, "SELECT * FROM movies WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[7], order, "SELECT * FROM movies WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[8], order, "SELECT * FROM movies WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[9], order, "SELECT * FROM tv WHERE status = 1 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[10], order, "SELECT * FROM tv WHERE status = 2 ORDER BY " +  order +  " ASC", connection);
+                populateJList(list[11], order, "SELECT * FROM tv WHERE status = 3 ORDER BY " +  order +  " ASC", connection);
             } catch (SQLException ex) {
                 Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
    
-    public static void populateJList(JList list, String query, Connection connection) throws SQLException
+    public static void populateJList(JList list, String order, String query, Connection connection) throws SQLException
         {
             DefaultListModel model = new DefaultListModel(); //create a new list model
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query); //run your query
+            String lastData = "";
             
             while (resultSet.next()) //go through each row that your query returns
             {
                 String itemCode = resultSet.getString("name"); //get the element in column "name"
+                
+                if (order.equals("genre")){
+                    if (!resultSet.getString("genre").equals(lastData)){
+                        model.addElement("<html><b><u>" + resultSet.getString("genre") + "</u></b><html>");
+                        lastData = resultSet.getString("genre");
+                    }
+                } 
+                else if (order.equals("date")) {
+                    if (!resultSet.getString("date").equals(lastData)){
+                        model.addElement("<html><b><u>" + resultSet.getString("date") + "</u></b><html>");
+                        lastData = resultSet.getString("date");
+                    }
+                }
+                else if (order.equals("ownership")) {
+                    if (!resultSet.getString("ownership").equals(lastData)){
+                        if (resultSet.getString("ownership").equals("1"))
+                            model.addElement("<html><b><u>Owned</u></b><html>");
+                        else
+                            model.addElement("<html><b><u>Not Owned</u></b><html>");
+                        lastData = resultSet.getString("ownership");
+                    }
+                }
+                else if (order.equals("console")) {
+                    if (!resultSet.getString("console").equals(lastData)){
+                        model.addElement("<html><b><u>" + resultSet.getString("console") + "</u></b><html>");
+                        lastData = resultSet.getString("console");
+                    }
+                }
+                else if (order.equals("author")) { 
+                    if (!resultSet.getString("author").equals(lastData)){
+                        model.addElement("<html><b><u>" + resultSet.getString("author") + "</u></b><html>");
+                        lastData = resultSet.getString("author");
+                    }
+                }
+                
                 model.addElement(itemCode); //add each item to the model
             }
             list.setModel(model);
@@ -3051,7 +3068,6 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JToggleButton byOwnershipBooks;
     private javax.swing.JToggleButton byOwnershipGames;
     private javax.swing.JToggleButton byOwnershipMovies;
-    private javax.swing.JToggleButton byOwnershipTv;
     private javax.swing.ButtonGroup columnRadioButtons;
     private javax.swing.JButton confirmButtonBooks;
     private javax.swing.JButton confirmButtonGames;
