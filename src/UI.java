@@ -869,9 +869,13 @@ public class UI extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        mysqlLogin.setMinimumSize(new java.awt.Dimension(415, 280));
+        mysqlLogin.setTitle("Database Login");
+        mysqlLogin.setAlwaysOnTop(true);
+        mysqlLogin.setMinimumSize(new java.awt.Dimension(360, 280));
+        mysqlLogin.setPreferredSize(new java.awt.Dimension(360, 280));
+        mysqlLogin.setResizable(false);
 
-        jLabel21.setText("Please enter your URL/IP Address, mysql database name, a ");
+        jLabel21.setText("Please enter your URL/IP Address, mySQL database name, a ");
 
         jLabel22.setText("username for that database, and the corresponding password.");
 
@@ -978,7 +982,7 @@ public class UI extends javax.swing.JFrame {
                     .addComponent(jLabel27)
                     .addComponent(mysqlPortField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(mysqlConnectButton))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
